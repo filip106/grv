@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <script src="{{ asset('build/manifest.js') }}"></script>
+    <script src="{{ asset('build/vendor.js') }}"></script>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% include 'navigation.html.twig' %}
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>
