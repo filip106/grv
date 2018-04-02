@@ -1,0 +1,13 @@
+.btn-save-entity {
+    float: right;
+    margin-top: 40px;
+    min-width: 130px;
+}
+
+.valid-entity-field {
+    border-color: #28a745;
+}
+
+.invalid-entity-field {
+    border-color: #dc3545;
+}

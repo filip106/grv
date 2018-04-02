@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block cardTitle %}{% trans %}page.title.all.vehicles{% endtrans%}{% endblock %}
+{% block cardSubtitle %}{% trans %}page.subtitle.all.vehicles{% endtrans%}{% endblock %}
+
 {% block body %}
-    <h1>All Vehicle</h1>
+    <p>All vehicles</p>
 {% endblock %}
 
-{% block javascripts %}
-    <script src="{{ asset('build/all_vehicle.js') }}"></script>
-{% endblock %}
+{#{% block javascripts %}#}
+    {#<script src="{{ asset('build/all_vehicle.js') }}"></script>#}
+{#{% endblock %}#}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/all_vehicle.css') }}">
-{% endblock %}
+{#{% block stylesheets %}#}
+    {#<link rel="stylesheet" href="{{ asset('build/all_vehicle.css') }}">#}
+{#{% endblock %}#}

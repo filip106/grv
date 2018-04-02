@@ -1,0 +1,20 @@
+site.title: Energo Service
+
+
+link.dashboard: Dashboard
+link.construction.sites: Construction
+link.tender: Tender
+link.book: Book
+link.situation: Situation
+link.vehicles: Vehicles
+link.material: Material
+
+
+page.title.dashboard: Dashoard
+page.subtitle.dashboard: Show most recent activities
+page.title.all.vehicles: All available vehicles
+page.subtitle.all.vehicles: Display all vehicles(and their available status)
+page.title.all.construction.sites: All Construction Sites
+page.subtitle.all.construction.sites: List of all construction sites(active and fineshed)
+page.title.all.materials: All materials
+page.subtitle.all.materials: List of all available materials

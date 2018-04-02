@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block cardTitle %}{% trans %}page.title.all.materials{% endtrans %}{% endblock %}
+{% block cardSubtitle %}{% trans %}page.subtitle.all.materials{% endtrans %}{% endblock %}
+
+{% block body %}
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        let columnMode = [
+            {label: 'Material ID', name: 'id', key: true, width: 75},
+            {label: 'Name', name: 'name', width: 150},
+            {label: 'Price', name: 'price', width: 150},
+            {label: 'Description', name: 'description', width: 150}
+        ];
+        $(document).ready(function () {
+            $("#jqGrid").jqGrid({
+                url: '{{ path('api_material_all') }}',
+                mtype: "GET",
+                datatype: "json",
+                colModel: columnMode,
+                viewrecords: true,
+                width: 1000,
+                height: 240,
+                rowNum: 10,
+                pager: "#jqGridPager"
+            });
+        });
+
+    </script>
+{% endblock %}
+
+{#{% block stylesheets %}#}
+    {#<link rel="stylesheet" href="{{ asset('build/all_vehicle.css') }}">#}
+{#{% endblock %}#}

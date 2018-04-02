@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{# @var material \App\Entity\Material #}
+
+{% block cardTitle %}{% trans %}page.title.edit.materials{% endtrans %}{% endblock %}
+{% block cardSubtitle %}{% trans %}page.subtitle.edit.materials{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="col-md-8 col-sm-12">
+        <h3>{% trans %}label.material.fields{% endtrans%}</h3>
+        <form action="#">
+            <div class="form-row">
+                <div class="col-6">
+                    <label for="material_name">{% trans %}label.material.name{% endtrans%}</label>
+                    <input class="form-control" type="text" id="material_name" name="name" value="{{ material.name }}" placeholder="{% trans %}label.material.name{% endtrans%}">
+                </div>
+                <div class="col-6">
+                    <label for="material_price">{% trans %}label.material.price{% endtrans%}</label>
+                    <input class="form-control" type="number" id="material_price" name="price" value="{{ material.price }}" placeholder="{% trans %}label.material.price{% endtrans%}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-12">
+                    <label for="material_description">{% trans %}label.material.description{% endtrans%}</label>
+                    <textarea class="form-control" rows="3" id="material_description" name="description" placeholder="{% trans %}label.material.description{% endtrans%}">{{ material.description }}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-save-entity" id="edit_material_btn" type="button">{% trans %}label.save{% endtrans%}</button>
+        </form>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <h3>{% trans %}label.instruction{% endtrans%}</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae et eveniet laboriosam molestiae necessitatibus repudiandae sapiente. Consectetur culpa dolorum explicabo facere labore magnam molestias natus odio qui quos, sunt?</p>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        /** fields */
+        let nameField = $('#material_name');
+        let priceField = $('#material_price');
+        let descriptionField = $('#material_description');
+
+        let editMaterialBtn = $('#edit_material_btn');
+        let material = {
+            id: {{ material.id }},
+            name: null,
+            price: null,
+            description: null
+        };
+
+        editMaterialBtn.on('click', function () {
+            if (isMaterialValid()) {
+                sendAjaxRequest('{{ path('api_material_update', {'id': material.id}) }}', material, 'PUT', editMaterialSuccessFunction, this);
+            }
+        });
+
+        function isMaterialValid() {
+            let isValid = true;
+            material.name = nameField.val();
+            material.price = priceField.val();
+            material.description = descriptionField.val();
+            if (!material.name) {
+                fieldInvalid(nameField);
+                isValid = false;
+            } else {
+                fieldValid(nameField)
+            }
+
+            if (!material.price || isNaN(parseFloat(material.price))) {
+                fieldInvalid(priceField);
+                isValid = false;
+            } else {
+                material.price = parseFloat(material.price);
+                fieldValid(priceField)
+
+            }
+
+            return isValid;
+        }
+
+        function editMaterialSuccessFunction(ctx, data) {
+
+        }
+    </script>
+{% endblock %}
+
+{#{% block stylesheets %}#}
+    {#<link rel="stylesheet" href="{{ asset('build/all_vehicle.css') }}">#}
+{#{% endblock %}#}
