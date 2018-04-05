@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class ConstructionBookController
  * @package App\Controller
  */
-class ConstructionBookController extends AbstractController
+class ConstructionBookController extends AbstractApplicationController
 {
     /**
      * @Route("/construction/book/all", name="all_construction_books")

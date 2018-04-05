@@ -16,16 +16,6 @@ trait ApplicationManagerTrait
      * @return mixed
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateEntity($entity)
-    {
-        return $this->repository->updateEntity($entity);
-    }
-
-    /**
-     * @param $entity
-     * @return mixed
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
     public function saveEntity($entity)
     {
         return $this->repository->saveEntity($entity);

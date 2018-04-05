@@ -28,8 +28,10 @@
         </form>
     </div>
     <div class="col-md-4 col-sm-12">
-        <h3>{% trans %}label.instruction{% endtrans%}</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae et eveniet laboriosam molestiae necessitatibus repudiandae sapiente. Consectetur culpa dolorum explicabo facere labore magnam molestias natus odio qui quos, sunt?</p>
+        <div class="alert alert-info">
+            <h3>{% trans %}label.instruction{% endtrans%}</h3>
+            <p>{% trans %}instruction.label.add{% endtrans%}</p>
+        </div>
     </div>
 
 {% endblock %}
@@ -79,8 +81,11 @@
             return isValid;
         }
 
-        function saveMaterialSuccessFunction(ctx, data) {
-
+        function saveMaterialSuccessFunction(ctx, data, responseCode) {
+            if (responseCode === 200) {
+                toastr.success('Material saved. Refreshing page...');
+                location.href = '/material/edit/' + data.id;
+            }
         }
     </script>
 {% endblock %}

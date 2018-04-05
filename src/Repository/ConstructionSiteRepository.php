@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Material;
+use App\Entity\ConstructionSite;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Material|null find($id, $lockMode = null, $lockVersion = null)
- * @method Material|null findOneBy(array $criteria, array $orderBy = null)
- * @method Material[]    findAll()
- * @method Material[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ConstructionSite|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ConstructionSite|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ConstructionSite[]    findAll()
+ * @method ConstructionSite[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MaterialRepository extends AbstractApplicationRepository
+class ConstructionSiteRepository extends AbstractApplicationRepository
 {
     use ApplicationRepositoryTrait;
 
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Material::class);
+        parent::__construct($registry, ConstructionSite::class);
     }
 
 

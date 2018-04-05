@@ -2,7 +2,7 @@
 
 {# @var material \App\Entity\Material #}
 
-{% block cardTitle %}{% trans %}page.title.edit.materials{% endtrans %}{% endblock %}
+{% block cardTitle %}{% trans %}label.edit.material{% endtrans%}: <i>"{{ material.name }}"</i>{% endblock %}
 {% block cardSubtitle %}{% trans %}page.subtitle.edit.materials{% endtrans %}{% endblock %}
 
 {% block body %}
@@ -29,8 +29,10 @@
         </form>
     </div>
     <div class="col-md-4 col-sm-12">
-        <h3>{% trans %}label.instruction{% endtrans%}</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae et eveniet laboriosam molestiae necessitatibus repudiandae sapiente. Consectetur culpa dolorum explicabo facere labore magnam molestias natus odio qui quos, sunt?</p>
+        <div class="alert alert-info">
+            <h3>{% trans %}label.instruction{% endtrans%}</h3>
+            <p>{% trans %}instruction.label.edit{% endtrans%}</p>
+        </div>
     </div>
 {% endblock %}
 
@@ -79,8 +81,11 @@
             return isValid;
         }
 
-        function editMaterialSuccessFunction(ctx, data) {
-
+        function editMaterialSuccessFunction(ctx, data, responseCode) {
+            if (responseCode === 200) {
+                toastr.success('Material edited. Refreshing page...');
+                location.reload();
+            }
         }
     </script>
 {% endblock %}

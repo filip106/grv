@@ -10,9 +10,9 @@ function sendAjaxRequest(route, data, method, successFunction, ctx) {
         contentType: "application/json",
         data: JSON.stringify(data),
         dataType: "text json"
-    }).then(function (data) {
+    }).then(function (data, textStatus, xhr) {
         if (successFunction != null && ctx != null) {
-            successFunction(ctx, data);
+            successFunction(ctx, data, xhr.status);
         }
         return data;
     });
@@ -31,3 +31,27 @@ function fieldInvalid(field) {
     }
     field.removeClass('valid-entity-field');
 }
+
+function formatAction() {
+    return '<span><i class="far fa-edit"></i></span><span><i class="fa fa-trash"></i></span>';
+}
+
+$(function() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+});

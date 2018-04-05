@@ -1,16 +1,81 @@
 {% extends 'base.html.twig' %}
 
 
-{% block cardTitle %}{% trans %}page.title.all.construction.sites{% endtrans%}{% endblock %}
-{% block cardSubtitle %}{% trans %}page.title.all.construction.sites{% endtrans%}{% endblock %}
+{% block cardTitle %}{% trans %}page.title.all.construction.sites{% endtrans %}{% endblock %}
+{% block cardSubtitle %}{% trans %}page.title.all.construction.sites{% endtrans %}{% endblock %}
 
 {% block body %}
-    <p>All construction sites</p>
+    <table id="jqGrid"></table>
+    <div id="jqGridPager"></div>
 {% endblock %}
 
-{#{% block javascripts %}#}
-    {#<script src="{{ asset('build/all_construction_sites.js') }}"></script>#}
-{#{% endblock %}#}
+{% block javascripts %}
+    <script>
+        let jqGrid = $("#jqGrid");
+        let columnMode = [
+            {label: 'Construction ID', name: 'id', key: true, width: 75},
+            {label: 'Name', name: 'name', width: 150},
+            {label: 'Is Active', name: 'active', width: 150},
+        ];
+
+        $(document).ready(function () {
+            jqGrid.jqGrid({
+                url: '{{ path('api_construction_site_all') }}',
+                mtype: "GET",
+                datatype: "json",
+                colModel: columnMode,
+                viewrecords: true,
+                width: 1000,
+                height: 240,
+                rowNum: 10,
+                pager: "#jqGridPager"
+            });
+
+            // We need to have a navigation bar in order to add custom buttons to it
+            jqGrid.navGrid('#jqGridPager',
+                {
+                    edit: false,
+                    add: false,
+                    del: false,
+                    search: false,
+                    refresh: true,
+                    view: false,
+                    position: "left",
+                    cloneToTop: true
+                });
+
+            // add first custom button
+            jqGrid.navButtonAdd('#jqGridPager',
+                {
+                    buttonicon: "ui-icon-plus",
+                    title: "Add new",
+                    caption: "Add new",
+                    position: "last",
+                    onClickButton: () => {
+                        location.href = '{{ path('add_construction_site_page') }}';
+                    }
+                }
+            );
+
+
+            /// add second custom button
+            jqGrid.navButtonAdd('#jqGridPager',
+                {
+                    buttonicon: "ui-icon-pencil",
+                    title: "Edit",
+                    caption: "Edit",
+                    position: "last",
+                    onClickButton: () => {
+                        let rowKey = jqGrid.jqGrid('getGridParam', "selrow");
+
+                        rowKey ? location.href = '/construction/site/edit/' + rowKey : alert("No rows are selected");
+                    }
+                }
+            );
+        });
+
+    </script>
+{% endblock %}
 
 {#{% block stylesheets %}#}
     {#<link rel="stylesheet" href="{{ asset('build/all_construction_sites.css') }}">#}

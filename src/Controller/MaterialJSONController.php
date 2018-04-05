@@ -67,12 +67,14 @@ class MaterialJSONController extends AbstractApplicationController
 
     /**
      * @Route("/api/material/{id}", methods={"PUT", "PATCH"}, name="api_material_update")
-     * @param Material $material
+     * @param Request $request
      * @return Response
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function updateMaterial(Material $material)
+    public function updateMaterial(Request $request)
     {
+        $material = $this->deserializeEntity($request->getContent(), Material::class);
+
         return new Response($this->serializeEntity($this->manager->updateEntity($material)), 200, ['Content-Type' => 'application/json']);
     }
 

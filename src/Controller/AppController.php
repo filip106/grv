@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class AppController
  * @package App\Controller
  */
-class AppController extends AbstractController
+class AppController extends AbstractApplicationController
 {
 
     /**

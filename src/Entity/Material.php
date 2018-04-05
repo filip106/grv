@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Material
+ * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\MaterialRepository")
  */
 class Material

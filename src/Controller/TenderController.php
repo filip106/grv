@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class TenderController
  * @package App\Controller
  */
-class TenderController extends AbstractController
+class TenderController extends AbstractApplicationController
 {
 
     /**

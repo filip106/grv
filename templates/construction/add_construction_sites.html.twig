@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+
+{% block cardTitle %}{% trans %}page.title.add.construction.sites{% endtrans %}{% endblock %}
+{% block cardSubtitle %}{% trans %}page.title.add.construction.sites{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="col-md-8 col-sm-12">
+        <h3>{% trans %}label.material.fields{% endtrans%}</h3>
+        <form action="#">
+            <div class="form-row">
+                <div class="col-12">
+                    <label for="construction_site_name">{% trans %}label.construction.site.name{% endtrans%}</label>
+                    <input class="form-control" type="text" id="construction_site_name" name="name" placeholder="{% trans %}label.construction.site.name{% endtrans%}">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-save-entity" id="save_construction_site_btn" type="button">{% trans %}label.save{% endtrans%}</button>
+        </form>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <div class="alert alert-info">
+            <h3>{% trans %}label.instruction{% endtrans%}</h3>
+            <p>{% trans %}instruction.construction.add{% endtrans%}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let nameField = $('#construction_site_name');
+        let saveConstructionSiteBtn = $('#save_construction_site_btn');
+
+        let constructionSite = {
+            id: null,
+            name: null,
+            active: true
+        };
+
+        saveConstructionSiteBtn.on('click', function () {
+            if (isConstructionSiteValid()) {
+                sendAjaxRequest('{{ path('api_construction_site_save') }}', constructionSite, 'POST', saveConstructionSiteSuccessFunction, this);
+            }
+        });
+
+        function isConstructionSiteValid() {
+            let isValid = true;
+            constructionSite.name = nameField.val();
+            if (!constructionSite.name) {
+                fieldInvalid(nameField);
+                isValid = false;
+            } else {
+                fieldValid(nameField)
+            }
+
+            return isValid;
+        }
+
+        function saveConstructionSiteSuccessFunction(ctx, data, responseCode) {
+            if (responseCode === 200) {
+                toastr.success('Construction site saved. Refreshing page...');
+                location.href = '/construction/site/edit/' + data.id;
+            }
+        }
+
+    </script>
+
+{% endblock %}
+
+{#{% block stylesheets %}#}
+    {#<link rel="stylesheet" href="{{ asset('build/all_construction_sites.css') }}">#}
+{#{% endblock %}#}

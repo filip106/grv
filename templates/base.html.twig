@@ -13,7 +13,9 @@
     <script src="{{ asset('node_modules/jquery/dist/jquery.min.js') }}"></script>
     {# BOOTSTRAP #}
     <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
-    <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    {# TOASTR #}
+    <link rel="stylesheet" href="{{ asset('node_modules/toastr/build/toastr.min.css') }}">
 
     {# Custom scripts#}
     <script src="{{ asset('js/main.js') }}"></script>
@@ -61,6 +63,13 @@
     </div>
 </div>
 
+{# BOOTSTRAP #}
+<script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+{# TOASTR #}
+<script src="{{ asset('node_modules/toastr/toastr.js') }}"></script>
+{# JqGrid #}
+<script type="text/ecmascript" src="{{ asset('guriddo_jqgrid/js/i18n/grid.locale-sr.js') }}"></script>
+<script type="text/ecmascript" src="{{ asset('guriddo_jqgrid/js/jquery.jqGrid.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
 </body>

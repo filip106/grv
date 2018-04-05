@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class VehicleController
  * @package App\Controller\Vehicle
  */
-class VehicleController extends AbstractController
+class VehicleController extends AbstractApplicationController
 {
 
     /**

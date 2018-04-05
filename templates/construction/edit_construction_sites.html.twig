@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{# @var constructionSite \App\Entity\ConstructionSite #}
+
+{% block cardTitle %}{% trans %}label.edit.construction.site{% endtrans %}: <i>"{{ constructionSite.name }}
+    "</i>{% endblock %}
+{% block cardSubtitle %}{% trans %}page.title.edit.construction.sites{% endtrans %}{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#basic_info_tab">{% trans %}label.basic.info{% endtrans %}</a></li>
+            <li><a data-toggle="tab" href="#expenses_tab">{% trans %}label.expenses{% endtrans %}</a></li>
+            <li><a data-toggle="tab" href="#vehicle_tab">{% trans %}label.vehicles{% endtrans %}</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="basic_info_tab" class="tab-pane fade in active show">
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <h3>{% trans %}label.material.fields{% endtrans %}</h3>
+                        <form action="#">
+                            <div class="form-row">
+                                <div class="col-9">
+                                    <label for="construction_site_name">{% trans %}label.construction.site.name{% endtrans %}</label>
+                                    <input class="form-control" type="text" id="construction_site_name" name="name" placeholder="{% trans %}label.construction.site.name{% endtrans %}">
+                                </div>
+                                <div class="col-1"></div>
+                                <div class="col-2">
+                                    <button class="btn btn-primary btn-save-entity" id="edit_construction_site_btn" type="button">{% trans %}label.save{% endtrans %}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="alert alert-info">
+                            <h3>{% trans %}label.instruction{% endtrans %}</h3>
+                            <p>{% trans %}instruction.construction.edit{% endtrans %}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="expenses_tab" class="tab-pane fade">
+                <h3>Menu 1</h3>
+                <p>Some content in menu 1.</p>
+            </div>
+            <div id="vehicle_tab" class="tab-pane fade">
+                <h3>Menu 2</h3>
+                <p>Some content in menu 2.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+{#{% block stylesheets %}#}
+    {#<link rel="stylesheet" href="{{ asset('build/all_construction_sites.css') }}">#}
+{#{% endblock %}#}

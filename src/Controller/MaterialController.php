@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class MaterialController
  * @package App\Controller
  */
-class MaterialController extends AbstractController
+class MaterialController extends AbstractApplicationController
 {
 
     /**

@@ -1,0 +1,32 @@
+site.title: Energo Service
+web.site.title: Energo Servise
+
+link.dashboard: Početna
+link.construction.sites: Gradilište
+link.tender: Ponuda
+link.book: Građevinska knjiga
+link.situation: Situacija
+link.vehicles: Vozila
+link.material: Materijal
+
+
+label.basic.info: Osnovne informacije
+label.expenses: Troškovi
+label.vehicles: Vozila
+
+label.edit.construction.site: Izmena gradilišta
+
+
+page.title.dashboard: Početna
+page.subtitle.dashboard: Prikaz poslednjih aktivnosti
+page.title.all.vehicles: Spisak slobodnih vozila
+page.subtitle.all.vehicles: Prikaz svih vozila(sa njihovim trenutnim stanjem)
+page.title.all.construction.sites: Spisak svih gradilišta
+page.subtitle.all.construction.sites: Prikaz svih gradilišta(aktivnih i završenih)
+page.title.all.materials: Spisak svih materijali
+page.subtitle.all.materials: Prikaz dostupnih materijala
+
+page.title.edit.construction.sites: Izmena informacija o gradilištu
+
+
+instruction.construction.add: Unesite naziv gradilišta i kliknite na taster sačuvaj. Nakon toga bićete preusmereni na stranici gde možete da uređujete aktivnosti na gradiliđtu(građevinsku knjigu, troškove, angažovanja vozila...)

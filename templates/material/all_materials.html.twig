@@ -10,14 +10,25 @@
 
 {% block javascripts %}
     <script type="text/javascript">
+        let jqGrid = $("#jqGrid");
         let columnMode = [
             {label: 'Material ID', name: 'id', key: true, width: 75},
             {label: 'Name', name: 'name', width: 150},
-            {label: 'Price', name: 'price', width: 150},
-            {label: 'Description', name: 'description', width: 150}
+            {
+                label: 'Price', name: 'price', width: 150, formatter: 'currency',
+                formatoptions: {
+                    decimalSeparator: '.',
+                    decimalPlaces: 0,
+                    suffix: ' RSD',
+                    thousandsSeparator: ' '
+                }
+            },
+            {label: 'Description', name: 'description', width: 150},
+            {label: 'Action', name: '', width: 50, formatter: formatAction}
         ];
+
         $(document).ready(function () {
-            $("#jqGrid").jqGrid({
+            jqGrid.jqGrid({
                 url: '{{ path('api_material_all') }}',
                 mtype: "GET",
                 datatype: "json",
@@ -28,7 +39,50 @@
                 rowNum: 10,
                 pager: "#jqGridPager"
             });
+
+            // We need to have a navigation bar in order to add custom buttons to it
+            jqGrid.navGrid('#jqGridPager',
+                {
+                    edit: false,
+                    add: false,
+                    del: false,
+                    search: false,
+                    refresh: true,
+                    view: false,
+                    position: "left",
+                    cloneToTop: true
+                });
+
+            // add first custom button
+            jqGrid.navButtonAdd('#jqGridPager',
+                {
+                    buttonicon: "ui-icon-plus",
+                    title: "Add new",
+                    caption: "Add new",
+                    position: "last",
+                    onClickButton: () => {
+                        location.href = '{{ path('add_materials_page') }}';
+                    }
+                }
+            );
+
+
+            /// add second custom button
+            jqGrid.navButtonAdd('#jqGridPager',
+                {
+                    buttonicon: "ui-icon-pencil",
+                    title: "Edit",
+                    caption: "Edit",
+                    position: "last",
+                    onClickButton: () => {
+                        let rowKey = jqGrid.jqGrid('getGridParam',"selrow");
+
+                        rowKey ? location.href = '/material/edit/' + rowKey : alert("No rows are selected");
+                    }
+                }
+            );
         });
+
 
     </script>
 {% endblock %}
